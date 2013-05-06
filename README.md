@@ -19,45 +19,48 @@ TODO... write these
 Check the example directory for more thorough examples.
 
 ### Master
-  master = require('feudal').Master()
+```javascript
+master = require('feudal').Master()
 
-  // Respond to completed jobs
-  master.on('job:complete', function(job){
-    console.log('This job completed:', job)
-    // Save the results or something?
-  })
+// Respond to completed jobs
+master.on('job:complete', function(job){
+  console.log('This job completed:', job)
+  // Save the results or something?
+})
 
-  // Start up the master!
-  master.start(function(err){
-    console.log("The master is running, ready for workers!")
-  })
+// Start up the master!
+master.start(function(err){
+  console.log("The master is running, ready for workers!")
+})
+```
 
 
 ### Workers
-  worker = require('feudal').Worker()
+```javascript
+worker = require('feudal').Worker()
 
-  // Receive a job to do
-  worker.on( 'job:assign', function(job){
-    // Do some work based on the job assigned
-    worker.complete( {message: "I did the job"} )
-    worker.sleep()
-  })
+// Receive a job to do
+worker.on( 'job:assign', function(job){
+  // Do some work based on the job assigned
+  worker.complete( {message: "I did the job"} )
+  worker.sleep()
+})
 
-  // Connecting to the Master
-  worker.connect( function(err){
-    worker.ableTo("eat")
-    worker.requestJob()
-  })
-
+// Connecting to the Master
+worker.connect( function(err){
+  worker.ableTo("eat")
+  worker.requestJob()
+})
+```
 
 ## Jobs
 ============
 Jobs can be added using `master.addJob(handle, job_data, [priority])` or by populating the jobs collection remotely or manually. Sleeping workers will only be woken when using the library, however if the master has no active workers, it will check for jobs every minute.
 
 ### Schema
-+ `handle` [**String**] - Used to distinguish job types.
-+ `data` [**Object**] - Whatever you need it to be.
-+ `priority` [**Number**] - Defaults to `0`. Numbers higher and lower dictate the prioritization respectively when jobs are requested by clients.
++ `handle` **String** - Used to distinguish job types.
++ `data` **Object** - Whatever you need it to be.
++ `priority` **Number** - Optional, defaults to `0`. Numbers higher and lower dictate the prioritization respectively when jobs are requested by clients.
 
 
 ## TODO
