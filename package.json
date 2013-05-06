@@ -1,0 +1,15 @@
+{
+  "name": "Feudal",
+  "version": "0.0.1",
+  "description": "A lightweight master/worker library for job queue management.",
+  "repository": "",
+  "author": "Derrick Pelletier <derrick@dpelletier.com>",
+  "dependencies": {
+    "mongoose": "*",
+    "socket.io": "~0.9.14",
+    "socket.io-client": "~0.9.11",
+    "underscore": "~1.4.4"
+  },
+  "license": "BSD",
+  "readmeFilename": "README.md"
+}
